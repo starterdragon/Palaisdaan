@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Aquarium Simulator!!</title>
+		<style>
+			* {
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<!--b><p class="roomname" style="text-align: center;"><span></span></b><br>
+		<p class="status" style="text-align: center;"><span></span-->
+		<canvas id="myCanvas" width="300" height="300" style="border:2px solid #000000;"></canvas>
+		<canvas id="leaderBoard" width="300" height="75" style="border:2px solid #000000;"></canvas><br>
+		<!--input type="text" id="nameInp" placeholder="UserName">
+		<input type="submit" id="submitName" onclick="updateName()">
+
+		&nbsp&nbsp&nbsp&nbsp
+		//Player Color: <input type="color" id="PColor" value="#ff0000">
+		&nbsp&nbsp&nbsp&nbsp
+		Name Color: <input type = "color" id="PNameColor" value="#000000"-->
+	</body>
+	<!--footer>
+
+		<p class="earned" style="text-align: center;"><span></span>
+
+		<p class="broadcast" style="text-align: center;"><span></span>
+	</footer-->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+
+	<script defer src = "fish.js"></script>
+	<script defer src = "connection.js"></script>
+	<script defer src = "listener.js"></script>
+	<script defer src = "leaderboard.js"></script>
+
+</html>
