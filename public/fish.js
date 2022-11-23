@@ -150,7 +150,7 @@ class Fish {
 	wander() {
 		var odds = Math.ceil(mt_rand(0, 10));
 		if (odds >= 4) {
-			this.speed = mt_rand(0.2, 1.4);
+			this.speed = mt_rand(0.2, 1.8);
 
 			this.direction.y = mt_rand(-20, 20);
 			this.direction.x = mt_rand(-30, 30);

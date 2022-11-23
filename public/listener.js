@@ -51,6 +51,7 @@
 			startLeaderBoardEngine();
 		}).catch(errorMessage => {
 			popTikTok_input(errorMessage + "\n");
+			connection = new TikTokIOConnection("https://tiktok-chat-reader.zerody.one/");
 		});
 	}
 
