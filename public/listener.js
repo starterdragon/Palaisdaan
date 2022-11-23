@@ -1,5 +1,5 @@
-	let backendUrl = location.protocol === 'file:' ? "https://tiktok-chat-reader.zerody.one/" : undefined;
-	const connection = new TikTokIOConnection(backendUrl); //("https://tiktok-chat-reader.zerody.one/");
+	//let backendUrl = location.protocol === 'file:' ? "https://tiktok-chat-reader.zerody.one/" : undefined;
+	const connection = new TikTokIOConnection("https://tiktok-chat-reader.zerody.one/");
 
 	let myUsername;
 
@@ -51,7 +51,6 @@
 			startLeaderBoardEngine();
 		}).catch(errorMessage => {
 			popTikTok_input(errorMessage + "\n");
-			connection = new TikTokIOConnection("https://tiktok-chat-reader.zerody.one/");
 		});
 	}
 
