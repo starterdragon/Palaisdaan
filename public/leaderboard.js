@@ -27,7 +27,7 @@
 		var earned = "𝕍𝕚𝕖𝕨𝕖𝕣: " + counter.view + " | 𝕃𝕚𝕜𝕖: " + counter.like + " | 𝔾𝕚𝕗𝕥𝕤: " + counter.gift;
 		btx.font = "20px Arial";
 		btx.fillStyle = "#000000";
-		btx.fillText(earned, 50, 50);
+		btx.fillText(earned, 50, 20);
 	}
 
 	const drawLobby = () => {
@@ -38,11 +38,11 @@
 		var lobby = getLobby();
 		btx.font = "20px Arial";
 		btx.fillStyle = "#000000";
-		btx.fillText("🐡 𝕔𝕠𝕦𝕟𝕥: " + lobby.size, 50, 75);
+		btx.fillText("🐡 𝕔𝕠𝕦𝕟𝕥: " + lobby.size, 50, 55);
 
 		btx.font = "25px Arial";
 		btx.fillStyle = "#000000";
-		btx.fillText("WORK IN PROGRESS [PREVIEW ONLY] : 💖 to join, grow, and keep your fish", 50, 110);
+		btx.fillText("WORK IN PROGRESS [PREVIEW ONLY] : 💖 to join, grow, and keep your fish", 50, 90);
 	}
 	
 	/*

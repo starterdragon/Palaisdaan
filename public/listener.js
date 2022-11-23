@@ -58,17 +58,22 @@
 		Object.keys(tempGift).forEach(function(gifter) {
 			if (tempGift[gifter].time > 0) {
 				tempGift[gifter].time -= 1;
-				
-				/** SHOW GIFT TASK **/
-				var gObj = lobby.get (gifter);
+
+				/** SHOW GIFT TASK *
+				var fish = lobby.get (gifter);
 				var img = new Image();
 				img.src = tempGift[gifter].giftimg;
-				ctx.drawImage(img, gObj.x + 10, gObj.y -10, gObj.size + 5, gObj.size +5);
-				
+				ctx.drawImage(img, fish.x + fish.size, fish.y + parseInt(fish.size / 2), 33, 38);
+
 				ctx.fillStyle = "#e6e600";
-				ctx.font = "20px Arial";
-				ctx.fillText("Count: " + tempGift[gifter].count, gObj.x + 10, gObj.y -10);
+				ctx.font = "18px Arial";
+				ctx.fillText("Amount: " + tempGift[gifter].count, fish.x + fish.size, (fish.y + parseInt(fish.size / 2)) - 10);*/
 			} else {
+				if (lobby.get(gifter) != null || undefined) {
+					var Tiktokerist = lobby.get(gifter);
+					Tiktokerist.name = gifter;
+					Tiktokerist.myimg = tempGift[gifter].origimg;
+				}
 				delete tempGift[gifter];
 			}
 		});
@@ -79,8 +84,10 @@
 			if (tempName[viewer] > 0) {
 				tempName[viewer] -= 1;
 			} else {
-				var Tiktokerist = lobby.get(viewer);
-				Tiktokerist.name = viewer;
+				if (lobby.get(viewer) != null || undefined) {
+					var Tiktokerist = lobby.get(viewer);
+					Tiktokerist.name = viewer;
+				}
 				delete tempName[viewer];
 			}
 		});
@@ -114,8 +121,8 @@
 			var Liker = lobby.get(tiktoker);
 
 			Liker.progress.exp += data.likeCount;
-			Liker.liveData.totallikes += data.likeCount;
-			Liker.liveData.pendinglikes += data.likeCount;
+			Liker.liveData.TotalLikes += data.likeCount;
+			Liker.liveData.PendingLikes += data.likeCount;
 
 			if (Liker.progress.level < 25) {
 				if (Liker.progress.exp >= Liker.progress.limit) {
@@ -127,7 +134,7 @@
 				}
 			}
 
-			Liker.age = (Math.ceil(config.age.common / config.heartbeat.listener) * 1000) * Liker.progress.level;
+			Liker.age = (Math.ceil(config.age.common / config.heartbeat.listener) * 1000) + (30 * Liker.progress.level);
 		} else {
 			
 			var newBorn = new Fish(
@@ -173,40 +180,43 @@
 
 		if (lobby.get(tiktoker) != null || undefined) {
 			var Gifter = lobby.get(tiktoker);
+			Gifter.myimg = data.giftPictureUrl;
+			Gifter.name = "🎁 sent x" + data.repeatCount + " gift";
 
 			tempGift[ tiktoker ] = {
-				time: 5,
-				giftimg: data.giftPictureUrl,
-				count: data.repeatCount
+				time: 6,
+				origimg: data.profilePictureUrl 
 			};
 
-			Gifter.liveData.giftamount += (data.diamondCount * data.repeatCount);
+			Gifter.liveData.TotalGift += (data.diamondCount * data.repeatCount);
 
-			if (Gifter.liveData.giftamount >= 1) {
-				Gifter.cosmetic.title = "🌱 VIP I 🌱";
+			if (Gifter.liveData.TotalGift >= 1 && Gifter.cosmetic.title != "🌱 VIP 🌱") {
+				Gifter.cosmetic.title = "🌱 VIP 🌱";
 				Gifter.cosmetic.titleColor = "#ff1a1a";
 				Gifter.size += 3;
+
+				Gifter.breed = "vip";
 			}
 
-			if (Gifter.liveData.giftamount >= 10) {
-				Gifter.cosmetic.title = "🌱 VIP II 🌱";
+			if (Gifter.liveData.TotalGift >= 10 && Gifter.cosmetic.title != "🌱 VVIP II 🌱") {
+				Gifter.cosmetic.title = "🌱 VVIP 🌱";
 				Gifter.cosmetic.titleColor = "#ff1a1a";
 				Gifter.size += 6;
 			}
 
-			if (Gifter.liveData.giftamount >= 30) {
+			if (Gifter.liveData.TotalGift >= 30 && Gifter.cosmetic.title != "💵 ELITE 💵") {
 				Gifter.cosmetic.title = "💵 ELITE 💵";
 				Gifter.cosmetic.titleColor = "#ff1a1a";
 				Gifter.size += 9;
 			}
 
-			if (Gifter.liveData.giftamount >= 50) {
+			if (Gifter.liveData.TotalGift >= 50 && Gifter.cosmetic.title != "💵 MILLIONAIRE 💵") {
 				Gifter.cosmetic.title = "💵 MILLIONAIRE 💵";
 				Gifter.cosmetic.titleColor = "#ff1a1a";
 				Gifter.size += 12;
 			}
 			
-			if (Gifter.liveData.giftamount >= 100) {
+			if (Gifter.liveData.TotalGift >= 100 && Gifter.cosmetic.title != "🔥🔥 LEGENDARY 🔥🔥") {
 				Gifter.cosmetic.title = "🔥🔥 LEGENDARY 🔥🔥";
 				Gifter.cosmetic.titleColor = "#ff1a1a";
 				Gifter.size += 20;
